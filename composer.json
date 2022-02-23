@@ -1,5 +1,5 @@
 {
-  "name": "thinkphp/check",
+  "name": "wekyun/check",
   "description": "check param!",
   "type": "library",
   "require": {
