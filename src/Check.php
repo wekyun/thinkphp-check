@@ -105,7 +105,7 @@ class Check
                 return $res_data;
             }
         } catch (Exception $exception) {
-            return exception($exception->getMessage());
+            return self::err_json($exception->getMessage());
         }
     }
 
