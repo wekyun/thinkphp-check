@@ -2,9 +2,8 @@
   "name": "wekyun/check",
   "description": "check param",
   "type": "library",
-  "version":"1.0",
   "require": {
-    "php": ">=7.0"
+    "php": ">=5.6"
   },
   "license": "MIT",
   "autoload": {
