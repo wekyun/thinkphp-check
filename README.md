@@ -1,26 +1,20 @@
-# thinkphp-check使用
-
 参数接收验证插件,依赖TP框架的场景验证.
 
 ## 安装插件:
 
-```composer
+```
 composer require wekyun/check
 ```
 
 **插件只能是TP5.1及TP6可以使用**
 
-
-
 ## 使用说明:
 
 1:使用之前需要先创建一个验证场景
 
-```php
+```
 php think make:validate Common
 ```
-
-
 
 2:在config文件目录下,创建配置文件:check.php
 
@@ -43,11 +37,9 @@ return [
 ];
 ```
 
-
-
 3:使用方法
 
-```php
+```
 <?php
 //1:使用com的场景验证类, 接收id参数,如果没有则默认值为33                 接收参数,并设置默认值
 Check::check('com', 'id:33');
@@ -62,7 +54,6 @@ Check::check('com', 'id.');
 $param = Check::check('com', 'id.,name.,age:18');
 dump($param);
 ```
-
 
 # Composer手册
 

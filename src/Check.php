@@ -30,6 +30,7 @@ class Check
      *
      * */
 
+
     /** 调用指定验证场景类的场景
      * @autho hugang
      * @param string $name 场景类名
@@ -41,9 +42,9 @@ class Check
         try {
             if (!self::$mapping) {
                 $check = config('check.');
-                if (!$check) return exception('验证配置为空');
-                if (!isset($check['mapping'])) return exception('验证配置:mapping 未定义');
-                if (count($check['mapping']) == 0) return exception('验证配置:mapping 为空');
+                if (!$check) return self::err_json('验证配置为空');
+                if (!isset($check['mapping'])) return self::err_json('验证配置:mapping 未定义');
+                if (count($check['mapping']) == 0) return self::err_json('验证配置:mapping 为空');
                 self::$mapping = $check['mapping'];
             }
             $param = \think\facade\Request::param('');
@@ -71,7 +72,7 @@ class Check
                             $value_more = explode('.', $value);
                             $check_key = $value_more[0];
                             if (!self::check_isset_value($param, $check_key)) {
-                                return exception($value_more[0] . ':必须');
+                                return self::err_json($value_more[0] . ':必须');
                             }
                         }
                         if ($check_key === null) $check_key = $value;
@@ -115,6 +116,16 @@ class Check
             return false;
         }
         return true;
+    }
+
+    //错误提示
+    private static function err_json($msg)
+    {
+        $err_func = config('check.err_func');
+        if ($err_func) {
+            return $err_func($msg, config('check.err_code', 203));
+        }
+        return exception($msg, config('check.err_code', 203));
     }
 
 
