@@ -59,7 +59,8 @@ Check::check('com', 'id.');
 //3:接收多个参数,使用com的场景验证类, 多个参数之间使用英文的 , 分割;
 //  .代表参数必传
 //  :后面的值为设置的默认值
-Check::check('com', 'id.,name.,age:18');
+$param = Check::check('com', 'id.,name.,age:18');
+dump($param);
 ```
 
 
