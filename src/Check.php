@@ -4,6 +4,8 @@
  * UserValidate: hg
  */
 
+namespace Check;
+
 use think\Exception;
 use think\Request;
 
@@ -16,10 +18,17 @@ class Check
     private static $class = [];//容器对象池
 
     //预定义验证场景类
-    private static $mapping = [
-        'com' => \app\common\validate\Common::class,//引入一个叫做com的公共验证场景类文件
-
-    ];
+    private static $mapping = [];
+    /*
+     * 配置参考
+     * <?php
+        return [
+                'mapping' => [
+                    'com' => \app\common\validate\Common::class,
+                ],
+            ];
+     *
+     * */
 
 
     /** 调用指定验证场景类的场景
@@ -28,23 +37,30 @@ class Check
      * @param string $check_name 场景名
      * @return 调用指定验证场景类的场景
      * */
-    public static function check($name, $check_name)
+    public static function check($name = '', $check_name = '')
     {
-        $obj = null;
-        $param = \think\facade\Request::param('');
-        if (!$check_name) {
-            return $param;
-        }
-        if (isset(self::$class[$name])) {
-            $obj = self::$class[$name];
-        } elseif (isset(self::$mapping[$name])) {
-            $class = self::$mapping[$name];
-            $obj = new $class();
-            self::$class[$name] = $obj;
-        }
-        $default_data = [];
-        if ($obj) {
-            try {
+        try {
+            if (!self::$mapping) {
+                $check = config('check.');
+                if (!$check) return exception('验证配置为空');
+                if (!isset($check['mapping'])) return exception('验证配置:mapping 未定义');
+                if (count($check['mapping']) == 0) return exception('验证配置:mapping 为空');
+                self::$mapping = $check['mapping'];
+            }
+            $param = \think\facade\Request::param('');
+            if (!$name || !$check_name) {
+                return $param;
+            }
+            $obj = null;
+            if (isset(self::$class[$name])) {
+                $obj = self::$class[$name];
+            } elseif (isset(self::$mapping[$name])) {
+                $class = self::$mapping[$name];
+                $obj = new $class();
+                self::$class[$name] = $obj;
+            }
+            $default_data = [];
+            if ($obj) {
                 if (is_string($check_name)) {
                     $check_name = explode(',', $check_name);
                 }
@@ -83,14 +99,14 @@ class Check
 
                 }
 
-            } catch (Exception $exception) {
-                return exception($exception->getMessage(), 203);
-            }
+
 //            dump($default_data);
-            $res_data = array_merge($param, $default_data);
-            return $res_data;
+                $res_data = array_merge($param, $default_data);
+                return $res_data;
+            }
+        } catch (Exception $exception) {
+            return exception($exception->getMessage());
         }
-        return e('验证类不存在');
     }
 
     //判断是否有值
