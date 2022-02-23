@@ -11,7 +11,7 @@
       "Check\\": "src/"
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "hugagn",
