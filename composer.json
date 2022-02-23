@@ -12,6 +12,7 @@
       "Check\\": "src/"
     }
   },
+  "minimum-stability": "stable",
   "authors": [
     {
       "name": "hugagn",
