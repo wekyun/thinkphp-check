@@ -88,11 +88,11 @@ class Check
                             }
                             //直接验证接受的所有参数是否合法，
                             if (!$obj->check($param)) {
-                                return exception($obj->getError());
+                                return self::err_json($obj->getError());
                             }
                         } else {
                             if (!$obj->check($param)) {
-                                return exception($obj->getError());
+                                return self::err_json($obj->getError());
                             }
                         }
                     }
