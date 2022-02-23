@@ -1,0 +1,24 @@
+{
+  "name": "thinkphp/check",
+  "description": "check param!",
+  "type": "library",
+  "require": {
+    "php": "^5.6.0"
+  },
+  "require-dev": {
+    "php": "^5.6.0"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Check\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "hugagn",
+      "email": "wekyun@qq.com",
+      "homepage": "https://gitee.com/wekyun"
+    }
+  ]
+}
