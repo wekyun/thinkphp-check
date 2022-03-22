@@ -117,7 +117,7 @@ class Check
     {
         if (isset($param[$check_key])) {
             $len = strlen(trim($param[$check_key]));
-            if ($len == 0) return true;
+            if ($len > 0) return true;
         }
         return false;
     }
