@@ -115,11 +115,14 @@ class Check
     //判断是否有值
     private static function check_isset_value($param, $check_key)
     {
-        if (isset($param[$check_key])) {
-            $len = strlen(trim($param[$check_key]));
-            if ($len > 0) return true;
+        if (!isset($param[$check_key]) || $param[$check_key] == '') {
+            if ($param[$check_key] == 0 || $param[$check_key] == '0') {
+                return true;
+            }
+            return false;
         }
-        return false;
+
+        return true;
     }
 
     //错误提示
