@@ -39,6 +39,7 @@ class Check
      * */
     public static function check($name = '', $check_name = '')
     {
+//        dd($check_name);
         try {
             if (!self::$mapping) {
                 $check = config('check.');
@@ -76,6 +77,7 @@ class Check
                             }
                         }
                         if ($check_key === null) $check_key = $value;
+
                         if (strpos($check_key, ':')) {
                             $check_key_more = explode(':', $check_key);
                             $check_key = $check_key_more[0];
@@ -115,13 +117,15 @@ class Check
     //判断是否有值
     private static function check_isset_value($param, $check_key)
     {
-        if (!isset($param[$check_key]) || $param[$check_key] == '') {
+        if (!isset($param[$check_key])) {
+            return false;
+        }
+        if (!$param[$check_key]) {
             if ($param[$check_key] == 0 || $param[$check_key] == '0') {
                 return true;
             }
             return false;
         }
-
         return true;
     }
 
