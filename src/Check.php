@@ -121,7 +121,7 @@ class Check
             return false;
         }
         if (!$param[$check_key]) {
-            if ($param[$check_key] == 0 || $param[$check_key] == '0') {
+            if ($param[$check_key] === 0 || $param[$check_key] === '0') {
                 return true;
             }
             return false;
