@@ -82,7 +82,7 @@ class Check
                             $check_key_more = explode(':', $check_key);
                             $check_key = $check_key_more[0];
                             if (!self::check_isset_value($param, $check_key)) {
-                                if ($check_key_more[1]) {
+                                if (strlen($check_key_more[1]) > 0) {
                                     $default_data[$check_key] = $check_key_more[1];
                                 } else {
                                     $default_data[$check_key] = NULL;
