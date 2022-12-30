@@ -85,7 +85,7 @@ class Check
                                 if (strlen($check_key_more[1]) > 0) {
                                     $default_data[$check_key] = $check_key_more[1];
                                 } else {
-                                    $default_data[$check_key] = NULL;
+                                    $default_data[$check_key] = '';
                                 }
                             }
                             //直接验证接受的所有参数是否合法，
@@ -94,7 +94,7 @@ class Check
                             }
                         } else {
                             if (!self::check_isset_value($param, $check_key)) {
-                                $default_data[$check_key] = NULL;
+                                $default_data[$check_key] = '';
                             }
                             if (!$obj->check($param)) {
                                 return self::err_json($obj->getError());
