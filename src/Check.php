@@ -53,13 +53,15 @@ class Check
 //        Check::input('com',['mobile.手机号码']);//提示:手机号码为必传字段
 //        try {
         if (!self::$mapping) {
-            $check = config('check.');
+            $c = config('');
+            $check = $c['check'];
+            unset($c);
             if (!$check) return self::err_json('验证配置为空');
             if (!isset($check['mapping'])) return self::err_json('验证配置:mapping 未定义');
             if (count($check['mapping']) == 0) return self::err_json('验证配置:mapping 为空');
             self::$mapping = $check['mapping'];
         }
-        $param = \think\facade\Request::param('');
+        $param = input('');
         if (!$name || !$check_name) {
             return $param;
         }
@@ -106,7 +108,7 @@ class Check
                                     }
                                 }
                             }
-                            return self::err_json($tips_name . '必须:');
+                            return self::err_json($tips_name . '必须:' . $check_key);
                         }
                     }
                     if ($check_key === null) $check_key = $value;
@@ -154,11 +156,11 @@ class Check
         if (!isset($param[$check_key])) {
             return false;
         }
-        if (is_string($param[$check_key]) && strlen($param[$check_key]) > 0){
+        if (is_string($param[$check_key]) && strlen($param[$check_key]) > 0) {
             return true;
         }
 
-        if (is_array($param[$check_key]) && count($param[$check_key]) > 0){
+        if (is_array($param[$check_key]) && count($param[$check_key]) > 0) {
             return true;
         }
 
