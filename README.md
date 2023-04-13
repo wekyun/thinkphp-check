@@ -149,7 +149,17 @@ $param = Check::check('com', 'mobile|手机号码.>请输入手机号码');//不
     Check::check('com', ['id.','name.','age:18']);
 ```
 
-## 5：手册
+## 5指定参数不验证规则
+
+~~~
+//mobile字段前面增加了英文的感叹号：! ，所以手机号这个字段不会验证是否正确，有些时候手机号不是必填的，可能会给0，就不会验证非法
+$param = Check::check('com', ['name|名称.','sex.>请选择性别','!mobile|手机号']);
+
+~~~
+
+
+
+## 6：手册
 
 *  TP5.1: https://static.kancloud.cn/manual/thinkphp5_1/354107
  *  TP5.0: https://static.kancloud.cn/manual/thinkphp5/129356
