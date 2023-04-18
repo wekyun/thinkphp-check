@@ -33,13 +33,8 @@ class Check
      * */
 
 
-    /** 调用指定验证场景类的场景
-     * @autho hugang
-     * @param string $name 场景类名
-     * @param string $check_name 场景名
-     * @return 调用指定验证场景类的场景
-     * */
-    public static function check2($name = '', $check_name = '')
+    //上一个版本废弃的
+    private static function check2($name = '', $check_name = '')
     {
         $check_key = false;
         $tips_name = false;
@@ -173,6 +168,12 @@ class Check
         return true;
     }
 
+    /** 调用指定验证场景类的场景
+     * @autho hugang
+     * @param string $name 场景类名
+     * @param string $check_name 场景名
+     * @return 调用指定验证场景类的场景
+     * */
     public static function check($name = null, $param = null)
     {
         $new_data = [];//最终接收的参数
