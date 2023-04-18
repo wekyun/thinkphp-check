@@ -163,4 +163,5 @@ $param = Check::check('com', ['name|名称.','sex.>请选择性别','!mobile|手
 
 *  TP5.1: https://static.kancloud.cn/manual/thinkphp5_1/354107
  *  TP5.0: https://static.kancloud.cn/manual/thinkphp5/129356
+ *  插件Composer主页:https://packagist.org/packages/wekyun/check
  *  Composer使用手册地址: https://www.kancloud.cn/liqingbo27/composer/574854
